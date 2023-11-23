@@ -1,0 +1,24 @@
+{
+  "name": "com.evgjeniy.unityextensions",
+  "author": {
+    "name": "evgjeniy",
+    "url": "https://github.com/evgjeniy"
+  },
+  "displayName": "Unity Extensions",
+  "description": "Useful extensions for Unity Engine programming",
+  "unity": "2019.1",
+  "version": "1.0.0",
+  "dependencies": {},
+  "keywords": [
+    "unity",
+    "unityextensions",
+    "gizmos",
+    "overlap"
+  ],
+  "documentationUrl": "https://github.com/evgjeniy/unity-extensions/blob/main/README.md",
+  "licensesUrl": "https://github.com/evgjeniy/unity-extensions/blob/main/LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evgjeniy/unity-extensions.git"
+  }
+}
