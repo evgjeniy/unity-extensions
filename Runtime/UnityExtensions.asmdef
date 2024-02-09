@@ -1,5 +1,5 @@
 {
-    "name": "Unity Extensions",
+    "name": "UnityExtensions",
     "rootNamespace": "UnityEngine.Extensions",
     "references": [],
     "includePlatforms": [],

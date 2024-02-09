@@ -27,14 +27,13 @@ namespace UnityEngine.Extensions.Editor
 
             var oldIndentLevel = EditorGUI.indentLevel;
             EditorGUI.indentLevel = 0;
-            
+
             EditorGUI.LabelField(drawTypeLabel, "Type");
             EditorGUI.PropertyField(drawTypeRect, property.FindPropertyRelative($"{nameof(GizmosData.drawType)}"), GUIContent.none);
             EditorGUI.LabelField(colorLabel, "Color");
             EditorGUI.PropertyField(colorRect, property.FindPropertyRelative($"{nameof(GizmosData.gizmosColor)}"), GUIContent.none);
 
             EditorGUI.indentLevel = oldIndentLevel;
-            
             EditorGUI.EndProperty();
         }
     }

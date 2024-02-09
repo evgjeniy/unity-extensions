@@ -3,15 +3,15 @@
     [System.Serializable]
     public class SphereData : BaseData
     {
-        [SerializeField, Min(0.0f)] private float radius = 1.0f;
-        
+        [SerializeField, Min(0.0f)] private float _radius = 1.0f;
+
         public float Radius
         {
-            get => radius;
+            get => _radius;
             set
             {
                 if (value < 0) return;
-                radius = value;
+                _radius = value;
             }
         }
     }

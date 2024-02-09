@@ -10,12 +10,11 @@
         public static void DestroyObject(this GameObject gameObject, float delay = 0.0f) => Object.Destroy(gameObject, delay);
 
         public static void DestroyComponent(this Component component, float delay = 0.0f) => Object.Destroy(component, delay);
-        public static void DestroyComponent<T>(this GameObject gameObject, float delay = 0.0f)
-        {
-            if (!gameObject.TryGetComponent<T>(out var result)) return;
-            if (result is not Component component) return;
 
-            Object.Destroy(component, delay);
+        public static void TryDestroyComponent<T>(this GameObject gameObject, float delay = 0.0f)
+        {
+            if (gameObject.TryGetComponent<T>(out var result) && result is Component component) 
+                Object.Destroy(component, delay);
         }
     }
 }

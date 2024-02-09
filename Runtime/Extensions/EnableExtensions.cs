@@ -2,6 +2,8 @@
 {
     public static class EnableExtensions
     {
+        public static void SetActive(this Component component, bool value) => component.gameObject.SetActive(value);
+
         public static void Activate(this GameObject gameObject) => gameObject.SetActive(true);
         public static void Activate(this Component component) => component.gameObject.SetActive(true);
 
