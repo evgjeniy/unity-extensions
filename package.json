@@ -7,13 +7,14 @@
   "displayName": "Unity Extensions",
   "description": "Useful extensions for Unity Engine programming",
   "unity": "2019.1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {},
   "keywords": [
     "unity",
     "unityextensions",
     "gizmos",
-    "overlap"
+    "overlap",
+    "cashing"
   ],
   "documentationUrl": "https://github.com/evgjeniy/unity-extensions/blob/main/README.md",
   "licensesUrl": "https://github.com/evgjeniy/unity-extensions/blob/main/LICENSE.md",

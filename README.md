@@ -18,12 +18,13 @@
   - [Overlap](#overlap)
     - [Overlap Data](#overlap-data)
     - [Overlap Extensions](#overlap-extensions)
+  - [MonoCashed](#monocashed) 
 
 # Get Started
 **Installation options:**
-- Copy git URL `https://github.com/evgjeniy/unity-extensions.git` in the **Unity Package Manager**.
+- Copy git URL `https://github.com/evgjeniy/unity-extensions.git` in the **Unity Package Manager**
 - Add `"com.evgjeniy.unityextensions": "https://github.com/evgjeniy/unity-extensions.git"` in `Packages/manifest.json`
-- Or just clone the `Code` folder in the `Assets` folder in your project.
+- Or just clone the `Runtime` and `Editor` folders somewhere inside the `Assets` folder in your project
 # How to use
 ## Base
 ### Enable Extensions
@@ -180,5 +181,55 @@ public class OverlapExample : MonoBehaviour
         for (int i = 0; i < nonAllocSize; i++)
             Debug.Log(_hits[i].point);
     }
+}
+```
+
+## MonoCashed
+
+`MonoCashed` class caches generic components attached to the GameObject in `Awake` method.
+Contains the properties `Cashed1`, `Cashed2`, ... `Cashed8` generic properties
+representing access to cached components respectively. Repeats all methods and properties
+of the `Transform` class.
+
+Instead of this `Awake` cashing:
+
+```csharp
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(IInputSystem))]
+public class MonoCashedSample : MonoBehaviour
+{
+    private Rigidbody _rigidbody;
+    private IInputSystem _inputSystem;
+    private float _moveSpeed = 5.0f;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        _inputSystem = GetComponent<IInputSystem>();
+        
+        _moveSpeed = 5.0f;
+    }
+
+    private void Update()
+    {
+        _rigidbody.velocity = _inputSystem.MoveDirection * (_moveSpeed * Time.deltaTime);
+    }
+}
+```
+
+Use `MonoCashed` class:
+
+```csharp
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(IInputSystem))]
+public class MonoCashedSample : MonoCashed<Rigidbody, IInputSystem>
+{
+    private float _moveSpeed;
+    
+    protected override void PostAwake() => _moveSpeed = 5.0f;
+ /* or
+    protected override void Awake() { base.Awake(); _moveSpeed = 5.0f; } */
+
+    private void Update() => Cashed1.velocity = Cashed2.MoveDirection * (_moveSpeed * Time.deltaTime);
 }
 ```
