@@ -117,6 +117,29 @@ public static void SetParent(this Component target, Component parent)
 public static void ClearParent(this GameObject target)
 public static void ClearParent(this Component target)
 ```
+### With Extensions
+Use `With` extension methods to setup objects using the syntax of sequential method invocation. Supports conditions.
+```csharp
+// instead of
+var button = gameObject.GetComponent<Button>();
+button.image.color = Color.white;
+button.enabled = true;
+if (button.interactable)
+    button.onClick.AddListener(() => Debug.Log("Click"));
+
+// use
+gameObject.GetComponent<Button>()
+    .With(x => x.image.color = Color.white)
+    .With(x => x.enabled = true)
+    .With(x => x.onClick.AddListener(() => Debug.Log("Click")), when: button.interactable);
+```
+```csharp
+public static T With<T>(this T self, Action<T> action)
+public static T With<T>(this T self, Action<T> action, bool when)
+public static T With<T>(this T self, Action<T> action, Func<bool> when)
+public static T With<T>(this T self, Action<T> action, Func<T, bool> when)
+```
+
 ## Gizmos
 - Declare the `GizmosData` field
 - Invoke `DrawSphere`, `DrawBox`, `DrawRay` or `DrawMesh` methods from `OnDrawGizmos` or `OnDrawGizmosSelected` methods
